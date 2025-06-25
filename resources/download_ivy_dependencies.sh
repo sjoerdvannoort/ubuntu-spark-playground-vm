@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Check if Ivy is installed
-if ! command -v ivy &> /dev/null; then
-    echo "Ivy is not installed. Please install Ivy first."
-    exit 1
-fi
-
 # Check if the correct number of arguments is provided
 if [ "$#" -ne 3 ]; then
     echo "Usage: $0 <groupId> <artifactId> <version>"
@@ -33,7 +27,17 @@ cat > "$TEMP_DIR/ivy.xml" <<EOL
 <ivy-module version="2.0">
     <info organisation="temp" module="temp-project"/>
     <dependencies>
-        <dependency org="$GROUP_ID" name="$ARTIFACT_ID" rev="$VERSION"/>
+        <dependency org="$GROUP_ID" name="$ARTIFACT_ID" rev="$VERSION">
+            <!-- Exclude standard JDK dependencies -->
+            <exclude org="javax" />
+            <exclude org="java" />
+            <exclude org="sun" />
+            <exclude org="jdk" />
+            <exclude org="com.amazonaws" />
+            
+            <!-- Exclude Spark-related dependencies -->
+            <exclude org="org.apache.spark" />
+        </dependency>
     </dependencies>
 </ivy-module>
 EOL
@@ -49,7 +53,7 @@ cat > "$TEMP_DIR/ivysettings.xml" <<EOL
 EOL
 
 # Run Ivy to download the dependencies
-java -jar /path/to/ivy.jar -settings "$TEMP_DIR/ivysettings.xml" -ivy "$TEMP_DIR/ivy.xml" -retrieve "$TARGET_DIR/[artifact]-[revision].[ext]"
+java -jar /opt/sparkplayground/ivy/ivy-2.5.3.jar -settings "$TEMP_DIR/ivysettings.xml" -ivy "$TEMP_DIR/ivy.xml" -retrieve "$TARGET_DIR/[organisation]-[artifact]-[revision].[ext]" -types jar
 
 # Clean up the temporary Ivy configuration
 rm -rf "$TEMP_DIR"

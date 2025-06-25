@@ -1,0 +1,11 @@
+[Unit]
+Description=Derby network server for hive meta store
+After=network.target
+
+[Service]
+User=root
+ExecStart=bash /opt/derby/bin/startNetworkServer
+ExecStop=bash /opt/derby/bin/stopNetworkServer
+
+[Install]
+WantedBy=multi-user.target
