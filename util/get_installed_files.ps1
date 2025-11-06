@@ -1,6 +1,8 @@
-$pwd_string = Read-Host "Enter sudo password" -MaskInput
+if (!$env:SPARKPLAYGROUND_SUDO_PWD){
+     $env:SPARKPLAYGROUND_SUDO_PWD = Read-Host "Enter sudo password" -MaskInput
+}
 $mv_file = @(
-    "PASSWORD=$($pwd_string)",
+    "PASSWORD=$($env:SPARKPLAYGROUND_SUDO_PWD)",
     "echo `$PASSWORD | sudo -S cp /root/.ipython/profile_default/startup/10-sparksession.py ~"
 )
 ($mv_file) | ssh -i "$($env:USERPROFILE)\.ssh\sparkplayground" sparkadmin@sparkplayground.mshome.net "tr -d '\r' | bash -s"
@@ -8,9 +10,10 @@ $mv_file = @(
 scp -i "$($env:USERPROFILE)\.ssh\sparkplayground" sparkadmin@sparkplayground.mshome.net:/opt/sparkplayground/sparkthrift.service "resources/sparkthrift.service"
 scp -i "$($env:USERPROFILE)\.ssh\sparkplayground" sparkadmin@sparkplayground.mshome.net:/opt/derby/derbyns.service "resources/derbyns.service"
 scp -i "$($env:USERPROFILE)\.ssh\sparkplayground" sparkadmin@sparkplayground.mshome.net:10-sparksession.py "resources/10-sparksession.py"
+scp -i "$($env:USERPROFILE)\.ssh\sparkplayground" sparkadmin@sparkplayground.mshome.net:/etc/samba/smb.conf "resources/smb.conf"
 
 $mv_file = @(
-    "PASSWORD=$($pwd_string)",
+    "PASSWORD=$($env:SPARKPLAYGROUND_SUDO_PWD)",
     "echo `$PASSWORD | sudo -S rm 10-sparksession.py"
 )
 ($mv_file) | ssh -i "$($env:USERPROFILE)\.ssh\sparkplayground" sparkadmin@sparkplayground.mshome.net "tr -d '\r' | bash -s"
