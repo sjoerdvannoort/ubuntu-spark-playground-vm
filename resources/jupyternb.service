@@ -1,0 +1,15 @@
+[Unit]
+Description=JupyterNotebook
+After=derbyns.service
+
+[Service]
+User=root
+ENVIRONMENT="SPARK_HOME=/opt/spark"
+Environment="PATH=/opt/spark/bin:/opt/spark/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/opt/jupyternb/bin"
+Environment="PYTHONPATH=/opt/spark/python:/opt/spark/python/lib/py4j-0.10.9.9-src.zip"
+Environment="CLASSPATH=/opt/derby/lib:/opt/sparkplayground/jars"
+Environment="IPYTHON_START_SPARK=Y"
+ExecStart=/opt/jupyternb/bin/jupyter notebook --config /opt/jupyternb/etc/jupyter/jupyter_notebook_config.py --ip 0.0.0.0 --no-browser --allow-root --PasswordIdentityProvider.hashed_password "" --PasswordIdentityProvider.token ""
+
+[Install]
+WantedBy=multi-user.target

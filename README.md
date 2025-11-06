@@ -13,7 +13,7 @@ Select install open ssh.
 ## Using SSH
 While you can connect to your ubuntu VM and use the console, using ssh on your windows host will allow easy copy and paste. To start start, open CMD shell and type:
 ```
-ssh sparkadmin@sparkplayground
+ssh sparkadmin@sparkplayground@mshome.net
 ```
 
 ## manual steps after install
@@ -95,11 +95,11 @@ paste the contents from %USERPROFILE%\.ssh\sparkplayground.pub
 From the solution root, run the powershell scripts to install
 
 ```
+.\local\deploy_resources.ps1
+
 .\local\install_java.ps1
 
 .\local\install_spark.ps1
-
-.\local\deploy_resources.ps1
 
 .\\local\install_ivy.ps1
 
