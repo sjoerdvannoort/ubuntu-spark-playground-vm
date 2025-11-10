@@ -51,7 +51,7 @@ with that UUID, add a line to the config
 ```
 sudo nano /etc/fstab
 
-/dev/disk/by-uuid=XXXXXXXX /shared ntfs defaults 0 1
+/dev/disk/by-uuid/XXXXXXXX /shared ntfs defaults 0 1
 ```
 
 Reboot and check the directory is available.
@@ -104,6 +104,8 @@ From the solution root, run the powershell scripts to install
 .\\local\install_ivy.ps1
 
 .\\local\install_derby.ps1
+
+\\local\install_delta.ps1
 
 .\\local\install_jupyter.ps1
 ```

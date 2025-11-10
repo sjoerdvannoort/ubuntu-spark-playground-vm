@@ -9,7 +9,7 @@ Environment="PATH=/opt/spark/bin:/opt/spark/sbin:/bin:/usr/local/sbin:/usr/local
 Environment="PYTHONPATH=/opt/spark/python:/opt/spark/python/lib/py4j-0.10.9.9-src.zip"
 Environment="CLASSPATH=/opt/derby/lib:/opt/sparkplayground/jars"
 Environment="IPYTHON_START_SPARK=Y"
-ExecStart=/opt/jupyternb/bin/jupyter notebook --config /opt/jupyternb/etc/jupyter/jupyter_notebook_config.py --ip 0.0.0.0 --no-browser --allow-root --PasswordIdentityProvider.hashed_password "" --PasswordIdentityProvider.token ""
+ExecStart=/usr/bin/jupyter notebook --config /opt/sparkplayground/jupyter_notebook_config.py --ip 0.0.0.0 --no-browser --allow-root --PasswordIdentityProvider.hashed_password "" --PasswordIdentityProvider.token ""
 
 [Install]
 WantedBy=multi-user.target

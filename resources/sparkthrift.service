@@ -5,8 +5,8 @@ After=derbyns.service
 [Service]
 User=root
 Type=forking
-ExecStart=bash /opt/sparkplayground/start-thrift.sh
-ExecStop=bash /opt/sparkplayground/stop-thrift.sh
+ExecStart=bash /opt/sparkplayground/sbin/start-thrift.sh
+ExecStop=bash /opt/sparkplayground/sbin/stop-thrift.sh
 
 [Install]
 WantedBy=multi-user.target

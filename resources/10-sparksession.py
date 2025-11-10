@@ -9,7 +9,8 @@ if os.environ.get("IPYTHON_START_SPARK", "N") == "Y":
 	spark = SparkSession \
 		.builder \
 		.appName("Jupyternb") \
-		.config("spark.jars","/opt/sparkplayground/jars/io.delta-delta-spark_2.13-4.0.0.jar,/opt/sparkplayground/jars/io.delta-delta-storage-4.0.0.jar")\
+		.config("spark.driver.extraClassPath","/opt/sparkplayground/jars/io.delta-delta-spark_2.13-4.0.0.jar:/opt/sparkplayground/jars/io.delta-delta-storage-4.0.0.jar:/opt/derby/lib/*")\
+		.config("spark.executor.extraClassPath","/opt/sparkplayground/jars/io.delta-delta-spark_2.13-4.0.0.jar:/opt/sparkplayground/jars/io.delta-delta-storage-4.0.0.jar")\
 		.config("spark.sql.warehouse.dir", "/shared/manageddata")\
 		.config("spark.hadoop.javax.jdo.option.ConnectionURL", "jdbc:derby://localhost:1527//opt/sparkplayground/metastore/hive_derby;create=true")\
 		.config("spark.hadoop.javax.jdo.option.ConnectionDriverName", "org.apache.derby.jdbc.ClientDriver")\
