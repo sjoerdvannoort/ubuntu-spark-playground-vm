@@ -17,9 +17,6 @@ $sh_file = @(
 )
 ($sh_file) | ssh -i "$($env:USERPROFILE)\.ssh\sparkplayground" sparkadmin@sparkplayground.mshome.net "tr -d '\r' | bash -s"
 
-# copy the config file
-scp -i "$($env:USERPROFILE)\.ssh\sparkplayground" "resources/jupyter_notebook_config.py" "sparkadmin@sparkplayground.mshome.net:/opt/sparkplayground/jupyter_notebook_config.py"
-
 # copy the welcome notebook
 scp -i "$($env:USERPROFILE)\.ssh\sparkplayground" "resources/notebooks/welcome.ipynb" "sparkadmin@sparkplayground.mshome.net:/opt/sparkplayground/notebooks/welcome.ipynb"
 
