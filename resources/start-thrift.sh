@@ -25,7 +25,7 @@ fi
  --conf spark.driver.extraClassPath=/opt/sparkplayground/jars/io.delta-delta-spark_2.13-4.0.0.jar:/opt/sparkplayground/jars/io.delta-delta-storage-4.0.0.jar:/opt/derby/lib/*\
  --conf spark.executor.extraClassPath=/opt/sparkplayground/jars/io.delta-delta-spark_2.13-4.0.0.jar:/opt/sparkplayground/jars/io.delta-delta-storage-4.0.0.jar\
  --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension\
- --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog\ 
+ --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog\
  --hiveconf hive.server2.transport.mode=http\
  --hiveconf hive.server2.thrift.http.port=10001\
  --hiveconf hive.server2.authentication=NOSASL\
